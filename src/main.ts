@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-// import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 // import { ConfigService } from '@nestjs/config';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -16,7 +16,7 @@ async function bootstrap() {
     const mongoURL = process.env.MONGO_URI;
     await mongoose.connect(mongoURL);
 
-    // app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalPipes(new ValidationPipe());
     app.enableCors();
     app.setGlobalPrefix('api');
     // app.useStaticAssets(path.join(__dirname, '..', 'public'));
